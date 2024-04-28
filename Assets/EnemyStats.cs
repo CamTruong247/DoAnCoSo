@@ -29,4 +29,13 @@ public class EnemyStats : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().velocity = transform.right * bulletspeed;
         }   
     }
+
+    public void UpdateHealth(float health)
+    {
+        this.health -= health;
+        if(this.health<= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

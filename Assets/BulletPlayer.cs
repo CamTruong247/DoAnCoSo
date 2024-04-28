@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class BulletPlayer : MonoBehaviour
 {
-    [SerializeField] private GameObject prefab;
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            EnemyStats.main.health -= PlayerStats.main.damagebullet;
-            if (EnemyStats.main.health <= 0)
-            {
-                Destroy(collision.gameObject);
-            }
+            EnemyStats.main.UpdateHealth(PlayerStats.main.damagebullet);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+    }
+    private void Start()
+    {
+        Destroy(gameObject, 1.5f);
     }
 }

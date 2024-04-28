@@ -32,8 +32,7 @@ public class EnemyMovement : MonoBehaviour
                 {
                     movepointindex--;
                 }
-
-            } 
+            }
         }
     }
     private void FixedUpdate()
