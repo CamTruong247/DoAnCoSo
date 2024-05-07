@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Animator runningspeed;
 
     [Header("Attributes")]
     [SerializeField] private float speed = 12f;
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+        runningspeed.SetFloat("Speed", MathF.Abs(horizontal));
         if(Input.GetKeyDown(KeyCode.W) && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
@@ -33,7 +35,8 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 transform.rotation = Quaternion.Euler(0, 180, 0);
-            } 
+            }
+
         }
     }
     private void FixedUpdate()
