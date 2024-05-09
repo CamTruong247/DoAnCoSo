@@ -20,23 +20,26 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        runningspeed.SetFloat("Speed", MathF.Abs(horizontal));
-        if(Input.GetKeyDown(KeyCode.W) && IsGrounded())
+        if(Time.timeScale == 1)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-        }
-        if (horizontal != 0)
-        {
-            if (horizontal > 0)
+            horizontal = Input.GetAxisRaw("Horizontal");
+            runningspeed.SetFloat("Speed", MathF.Abs(horizontal));
+            if (Input.GetKeyDown(KeyCode.W) && IsGrounded())
             {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
             }
-            else
+            if (horizontal != 0)
             {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
+                if (horizontal > 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
 
+            }
         }
     }
     private void FixedUpdate()

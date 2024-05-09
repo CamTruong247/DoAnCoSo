@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &550617870519229667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1457912404323413743}
+  m_Layer: 7
+  m_Name: RangeView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1457912404323413743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550617870519229667}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.836, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 986314401479426256}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3873819698905648514
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,11 +91,12 @@ Transform:
   m_GameObject: {fileID: 8876638197507429900}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.33, z: 0}
+  m_LocalPosition: {x: 1.204, y: 0.33, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4527147964678441401}
+  - {fileID: 1457912404323413743}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &862996745763890674
@@ -134,7 +166,12 @@ MonoBehaviour:
   shootingPoint: {fileID: 4527147964678441401}
   bulletbotprefab: {fileID: 8446431183233678151, guid: 8d2369c674bd89043aadab27d4ea45f2, type: 3}
   health: 20
+  rangeview: {fileID: 550617870519229667}
   damagebullet: 10
+  radius: 4
+  layer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!50 &-1060865406432022429
 Rigidbody2D:
   serializedVersion: 4

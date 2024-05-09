@@ -39,36 +39,39 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        cooldownbullet += Time.deltaTime;
-        cooldownattack += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.J) && cooldownattack >= 0.9f)
+        if (Time.timeScale == 1)
         {
-            cooldownattack = 0;
-            Attack();
-        }
-        if (Input.GetKeyDown(KeyCode.K) && cooldownbullet >= 2f)
-        {            
-            if(mana >= 15)
+            cooldownbullet += Time.deltaTime;
+            cooldownattack += Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.J) && cooldownattack >= 0.9f)
             {
-                cooldownbullet = 0;
-                var bullet = Instantiate(bulletprefab, shootingPoint.position, bulletprefab.transform.rotation); 
-                bullet.GetComponent<Rigidbody2D>().velocity = shootingPoint.right * bulletspeed;
-                mana -= 15;
+                cooldownattack = 0;
+                Attack();
+            }
+            if (Input.GetKeyDown(KeyCode.K) && cooldownbullet >= 2f)
+            {
+                if (mana >= 15)
+                {
+                    cooldownbullet = 0;
+                    var bullet = Instantiate(bulletprefab, shootingPoint.position, bulletprefab.transform.rotation);
+                    bullet.GetComponent<Rigidbody2D>().velocity = shootingPoint.right * bulletspeed;
+                    mana -= 15;
+                    Manabar();
+                }
+            }
+            if (mana < 100)
+            {
+                mana += Time.deltaTime;
                 Manabar();
             }
-        }
-        if(mana < 100)
-        {
-            mana += Time.deltaTime;
-            Manabar();
-        }
-        
-        if(health < 100)
-        {
-            health += 0.5f * Time.deltaTime;
-            healthbar.fillAmount = health / 100f;
-            healthbar1.fillAmount = health / 100f;
-        }        
+
+            if (health < 100)
+            {
+                health += 0.5f * Time.deltaTime;
+                healthbar.fillAmount = health / 100f;
+                healthbar1.fillAmount = health / 100f;
+            }
+        }   
     }
     private void Manabar()
     {
@@ -83,11 +86,11 @@ public class PlayerStats : MonoBehaviour
             hit.transform.GetComponent<EnemyStats>().UpdateHealth(damageattack);
         }
     }
-    private void OnDrawGizmosSelected()
-    {
-        Handles.color = Color.red;
-        Handles.DrawWireDisc(attackpoint.transform.position, attackpoint.transform.forward, radius);
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Handles.color = Color.red;
+    //    Handles.DrawWireDisc(attackpoint.transform.position, attackpoint.transform.forward, radius);
+    //}
     public void UpdateHealth(float health)
     {
         this.health -= health;
