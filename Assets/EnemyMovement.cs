@@ -4,18 +4,29 @@ public class EnemyMovement : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform[] movepoint;
-    [SerializeField] private float movespeed;
+    [SerializeField] public float movespeed;
     [SerializeField] private GameObject enemyprefab;
     [SerializeField] private Transform spawnpoint;
 
     private GameObject enemy;
-    private int movepointindex = 0;
+    public int movepointindex = 0;
+    public static EnemyMovement main;
+
+    private void Awake()
+    {
+        main = this;
+    }
 
     private void Start()
     {
         enemy = Instantiate(enemyprefab, spawnpoint.position, Quaternion.identity);
     }
     private void Update()
+    {
+        EnemyMove();
+    }
+
+    public void EnemyMove()
     {
         if (gameObject != null)
         {
@@ -33,6 +44,7 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
+
     private void FixedUpdate()
     {
         enemy.GetComponent<Rigidbody2D>().velocity = enemy.transform.right * movespeed;

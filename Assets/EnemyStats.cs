@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
@@ -7,6 +8,7 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] private GameObject bulletbotprefab;
     [SerializeField] public float health;
     [SerializeField] public GameObject rangeview;
+    [SerializeField] private GameObject player;
 
     private float bulletspeed = 5f;
     public float damagebullet = 10f;
@@ -33,12 +35,17 @@ public class EnemyStats : MonoBehaviour
             , new Vector3(4, 0.5f, 0), 0f, Vector2.left, 0f, layer); 
         if (hits.Length > 0)
         {
+            EnemyMovement.main.movespeed = 0;
             if (cooldown <= 0)
             {
                 cooldown = 1.5f;
                 var bullet = Instantiate(bulletbotprefab, shootingPoint.position, bulletbotprefab.transform.rotation);
                 bullet.GetComponent<Rigidbody2D>().velocity = transform.right * bulletspeed;
             }
+        }
+        else
+        {
+            EnemyMovement.main.movespeed = 2;
         }
     }
 

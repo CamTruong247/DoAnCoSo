@@ -3,12 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class UIHome : MonoBehaviour
 {
-   public void LoadScene(string play)
+    public void LoadScene(string play)
    {
         SceneManager.LoadSceneAsync(play);
-   }
+    }
    public void ExitGame()
    {
         Application.Quit();
-   }
+    }
 }

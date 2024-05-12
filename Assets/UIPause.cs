@@ -4,6 +4,12 @@ using UnityEngine;
 public class UIPause : MonoBehaviour
 {
     public bool check;
+    public static UIPause main;
+
+    private void Awake()
+    {
+        main = this;
+    }
 
     public void PauseGame()
     {

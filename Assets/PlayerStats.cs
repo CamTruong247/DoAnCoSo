@@ -13,9 +13,12 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public Image manabar;
     [SerializeField] public Image manabar1;
     [SerializeField] private GameObject attackpoint;
+    [SerializeField] private GameObject pauseblack;
+    [SerializeField] private GameObject pausegame;
     
+    AudioManager audioManager;
         
-    private float bulletspeed = 5f;
+    private float bulletspeed = 8f;
     public float damagebullet = 4f;
     public float damageattack = 2f;
     public static PlayerStats main;
@@ -27,6 +30,7 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         main = this;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void Start()
@@ -92,10 +96,13 @@ public class PlayerStats : MonoBehaviour
     public void UpdateHealth(float health)
     {
         this.health -= health;
+        audioManager.PlaySFX(audioManager.damagehealth);
         if (this.health <= 0)
         {
             Destroy(gameObject);
-            Time.timeScale = 0;
+            UIPause.main.PauseGame();
+            pauseblack.SetActive(true);
+            pausegame.SetActive(true);
         }
     }
 }
