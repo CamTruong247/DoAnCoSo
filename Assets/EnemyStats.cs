@@ -17,7 +17,6 @@ public class EnemyStats : MonoBehaviour
     public float radius;
     public LayerMask layer;
 
-
     private void Awake()
     {
         main = this;
