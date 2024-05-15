@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
@@ -8,18 +9,27 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] private GameObject bulletbotprefab;
     [SerializeField] public float health;
     [SerializeField] public GameObject rangeview;
-    [SerializeField] private GameObject player;
+    [SerializeField] private EnemyType enemytype;
+    [SerializeField] private GameObject attackpoint;
 
+    public static EnemyStats main;
     private float bulletspeed = 5f;
     public float damagebullet = 10f;
-    public static EnemyStats main;
-    private float cooldown = 1.5f;
+    public float damageattack = 5f;    
+    private float cooldownbullet = 1.5f;
+    private float cooldownattack = 1.5f;
     public float radius;
     public LayerMask layer;
 
     private void Awake()
     {
         main = this;
+    }
+
+    public enum EnemyType
+    {
+        melee,
+        range
     }
 
     private void Update()
@@ -29,23 +39,47 @@ public class EnemyStats : MonoBehaviour
 
     private void RangeView()
     {
-        cooldown -= Time.deltaTime;
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(rangeview.transform.position
-            , new Vector3(4, 0.5f, 0), 0f, Vector2.left, 0f, layer); 
-        if (hits.Length > 0)
+        cooldownbullet -= Time.deltaTime;
+        cooldownattack -= Time.deltaTime;
+       
+        if (enemytype == EnemyType.range)
         {
-            EnemyMovement.main.movespeed = 0;
-            if (cooldown <= 0)
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(rangeview.transform.position, new Vector3(4, 0.5f, 0), 0f, Vector2.left, 0f, layer);
+            if (hits.Length > 0)
             {
-                cooldown = 1.5f;
-                var bullet = Instantiate(bulletbotprefab, shootingPoint.position, bulletbotprefab.transform.rotation);
-                bullet.GetComponent<Rigidbody2D>().velocity = transform.right * bulletspeed;
+                transform.GetComponent<EnemyMovement>().movespeed = 0;
+                if (cooldownbullet <= 0)
+                {
+                    cooldownbullet = 1.5f;
+                    var bullet = Instantiate(bulletbotprefab, shootingPoint.position, bulletbotprefab.transform.rotation);
+                    bullet.GetComponent<Rigidbody2D>().velocity = transform.right * bulletspeed;
+                }
             }
         }
-        else
+        if(enemytype == EnemyType.melee)
         {
-            EnemyMovement.main.movespeed = 2;
+            RaycastHit2D[] hits2 = Physics2D.CircleCastAll(attackpoint.transform.position, radius, attackpoint.transform.position, 0f, layer);
+            if (hits2.Length > 0)
+            {
+                transform.GetComponent<EnemyMovement>().movespeed = 0;
+                Debug.Log("aaaaa");
+                if (cooldownattack <= 0)
+                {
+                    cooldownattack = 1.5f;
+                    foreach (RaycastHit2D hit2 in hits2)
+                    {
+                            
+                        hit2.transform.GetComponent<PlayerStats>().UpdateHealth(damageattack);
+                    }
+                }
+            }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Handles.color = Color.red;
+        Handles.DrawWireDisc(attackpoint.transform.position, attackpoint.transform.forward, radius);
     }
 
     //private void OnDrawGizmosSelected()

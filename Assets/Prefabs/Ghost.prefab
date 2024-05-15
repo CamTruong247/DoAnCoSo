@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: -1060865406432022429}
   - component: {fileID: -7263802709341934663}
   m_Layer: 7
-  m_Name: Square
+  m_Name: Ghost
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,6 +167,8 @@ MonoBehaviour:
   bulletbotprefab: {fileID: 8446431183233678151, guid: 8d2369c674bd89043aadab27d4ea45f2, type: 3}
   health: 20
   rangeview: {fileID: 550617870519229667}
+  player: {fileID: 0}
+  enemytype: 1
   damagebullet: 10
   radius: 4
   layer:

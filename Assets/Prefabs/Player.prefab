@@ -159,7 +159,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1605470167, guid: 2d2ff2ecee310054f96eb3b7b4152809, type: 3}
+  m_Sprite: {fileID: 1424946576, guid: 2d2ff2ecee310054f96eb3b7b4152809, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -187,6 +187,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  runningspeed: {fileID: 0}
+  speed: 12
+  jumpingPower: 10
 --- !u!114 &4062686219165689997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +206,19 @@ MonoBehaviour:
   health: 0
   shootingPoint: {fileID: 121130283121408846}
   bulletprefab: {fileID: 8446431183233678151, guid: 8d2369c674bd89043aadab27d4ea45f2, type: 3}
+  healthbar: {fileID: 0}
+  healthbar1: {fileID: 0}
+  manabar: {fileID: 0}
+  manabar1: {fileID: 0}
+  attackpoint: {fileID: 0}
+  pauseblack: {fileID: 0}
+  pausegame: {fileID: 0}
+  damagebullet: 4
+  damageattack: 2
+  radius: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!61 &1834137358860724225
 BoxCollider2D:
   m_ObjectHideFlags: 0
