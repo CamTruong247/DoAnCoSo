@@ -4,7 +4,7 @@ public class EnemyMovement : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform[] movepoint;
-    [SerializeField] public float movespeed;
+    
     [SerializeField] private GameObject enemyprefab;
     [SerializeField] private Transform spawnpoint;
 
@@ -45,9 +45,5 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        enemy.GetComponent<Rigidbody2D>().velocity = enemy.transform.right * movespeed;
-
-    }
+    
 }

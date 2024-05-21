@@ -11,6 +11,7 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] public GameObject rangeview;
     [SerializeField] private EnemyType enemytype;
     [SerializeField] private GameObject attackpoint;
+    [SerializeField] public float movespeed;
 
     public static EnemyStats main;
     private float bulletspeed = 5f;
@@ -47,7 +48,7 @@ public class EnemyStats : MonoBehaviour
             RaycastHit2D[] hits = Physics2D.BoxCastAll(rangeview.transform.position, new Vector3(4, 0.5f, 0), 0f, Vector2.left, 0f, layer);
             if (hits.Length > 0)
             {
-                transform.GetComponent<EnemyMovement>().movespeed = 0;
+                movespeed = 0;
                 if (cooldownbullet <= 0)
                 {
                     cooldownbullet = 1.5f;
@@ -55,13 +56,17 @@ public class EnemyStats : MonoBehaviour
                     bullet.GetComponent<Rigidbody2D>().velocity = transform.right * bulletspeed;
                 }
             }
+            else
+            {
+                movespeed = 2;
+            }
         }
         if(enemytype == EnemyType.melee)
         {
             RaycastHit2D[] hits2 = Physics2D.CircleCastAll(attackpoint.transform.position, radius, attackpoint.transform.position, 0f, layer);
             if (hits2.Length > 0)
             {
-                transform.GetComponent<EnemyMovement>().movespeed = 0;
+                movespeed = 0;
                 Debug.Log("aaaaa");
                 if (cooldownattack <= 0)
                 {
@@ -72,6 +77,10 @@ public class EnemyStats : MonoBehaviour
                         hit2.transform.GetComponent<PlayerStats>().UpdateHealth(damageattack);
                     }
                 }
+            }
+            else
+            {
+                movespeed = 2;
             }
         }
     }
@@ -95,5 +104,10 @@ public class EnemyStats : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    private void FixedUpdate()
+    {
+        gameObject.GetComponent<Rigidbody2D>().velocity = gameObject.transform.right * movespeed;
+
     }
 }
