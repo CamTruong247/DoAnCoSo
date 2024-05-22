@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator runningspeed;
 
     [Header("Attributes")]
-    [SerializeField] private float speed = 12f;
+    [SerializeField] public float speed = 12f;
     [SerializeField] private float jumpingPower = 10f;
 
     private float horizontal;

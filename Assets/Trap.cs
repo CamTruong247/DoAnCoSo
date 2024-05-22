@@ -7,8 +7,11 @@ public class Trap : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             PlayerStats.main.UpdateHealth(10);
+            collision.transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(transform.position.x, transform.position.y + 4f ) * 10f,ForceMode2D.Impulse);
             Destroy(gameObject);
-            collision.gameObject.transform.position = new Vector2(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y + 2f);
         }
     }
+
+    
+
 }
