@@ -201,6 +201,8 @@ MonoBehaviour:
   rangeview: {fileID: 550617870519229667}
   enemytype: 0
   attackpoint: {fileID: 176006913581975580}
+  movespeed: 0
+  player: {fileID: 2490268043681851539, guid: 9a7c322c0d487414088a5052d51d6057, type: 3}
   damagebullet: 10
   damageattack: 5
   radius: 0.7

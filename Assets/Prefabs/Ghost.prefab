@@ -167,9 +167,12 @@ MonoBehaviour:
   bulletbotprefab: {fileID: 8446431183233678151, guid: 8d2369c674bd89043aadab27d4ea45f2, type: 3}
   health: 20
   rangeview: {fileID: 550617870519229667}
-  player: {fileID: 0}
   enemytype: 1
+  attackpoint: {fileID: 3873819698905648514}
+  movespeed: 0
+  player: {fileID: 2490268043681851539, guid: 9a7c322c0d487414088a5052d51d6057, type: 3}
   damagebullet: 10
+  damageattack: 5
   radius: 4
   layer:
     serializedVersion: 2

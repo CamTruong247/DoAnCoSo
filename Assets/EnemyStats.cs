@@ -67,13 +67,11 @@ public class EnemyStats : MonoBehaviour
             if (hits2.Length > 0)
             {
                 movespeed = 0;
-                Debug.Log("aaaaa");
                 if (cooldownattack <= 0)
                 {
                     cooldownattack = 1.5f;
                     foreach (RaycastHit2D hit2 in hits2)
                     {
-                            
                         hit2.transform.GetComponent<PlayerStats>().UpdateHealth(damageattack);
                     }
                 }
@@ -85,11 +83,11 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Handles.color = Color.red;
-        Handles.DrawWireDisc(attackpoint.transform.position, attackpoint.transform.forward, radius);
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Handles.color = Color.red;
+    //    Handles.DrawWireDisc(attackpoint.transform.position, attackpoint.transform.forward, radius);
+    //}
 
     //private void OnDrawGizmosSelected()
     //{
