@@ -170,7 +170,6 @@ MonoBehaviour:
   enemytype: 1
   attackpoint: {fileID: 3873819698905648514}
   movespeed: 0
-  player: {fileID: 2490268043681851539, guid: 9a7c322c0d487414088a5052d51d6057, type: 3}
   damagebullet: 10
   damageattack: 5
   radius: 4

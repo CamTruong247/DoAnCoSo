@@ -4,8 +4,7 @@ using UnityEngine.UI;
 public class PlayerStats : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] public float mana;
-    [SerializeField] public float health;
+   
     [SerializeField] private Transform shootingPoint;
     [SerializeField] private GameObject bulletprefab;
     [SerializeField] public Image healthbar;
@@ -17,7 +16,9 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private GameObject pausegame;
     
     AudioManager audioManager;
-        
+
+    public float mana = 100;
+    public float health = 100;
     private float bulletspeed = 8f;
     public float damagebullet = 4f;
     public float damageattack = 2f;
@@ -29,18 +30,34 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
+
         main = this;
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void Start()
     {
-        mana = 100;
-        health = 100;
+
+        if(PlayerPrefs.HasKey("Mana"))
+        {
+            mana = PlayerPrefs.GetFloat("Mana");
+        }
+        if (PlayerPrefs.HasKey("Health"))
+        {
+            health = PlayerPrefs.GetFloat("Health");
+        }
+        
+        
+    }
+
+    public void SaveUI()
+    {
+        
     }
 
     private void Update()
     {
+        
         if (Time.timeScale == 1)
         {
             cooldownbullet += Time.deltaTime;
@@ -73,7 +90,7 @@ public class PlayerStats : MonoBehaviour
                 healthbar.fillAmount = health / 100f;
                 healthbar1.fillAmount = health / 100f;
             }
-        }   
+        }        
     }
     private void Manabar()
     {

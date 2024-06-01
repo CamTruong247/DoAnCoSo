@@ -152,6 +152,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2353872425222404860, guid: 9a7c322c0d487414088a5052d51d6057, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353872425222404860, guid: 9a7c322c0d487414088a5052d51d6057, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: d4caf3466dd7bd446ad1ce4d59a8628b, type: 2}
@@ -219,6 +223,14 @@ PrefabInstance:
       propertyPath: runningspeed
       value: 
       objectReference: {fileID: 10009586}
+    - target: {fileID: 4062686219165689997, guid: 9a7c322c0d487414088a5052d51d6057, type: 3}
+      propertyPath: mana
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062686219165689997, guid: 9a7c322c0d487414088a5052d51d6057, type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4062686219165689997, guid: 9a7c322c0d487414088a5052d51d6057, type: 3}
       propertyPath: radius
       value: 0.7
@@ -796,7 +808,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Countine
+  m_text: Continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
