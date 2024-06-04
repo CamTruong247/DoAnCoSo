@@ -6,7 +6,7 @@ public class BulletPlayer : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            EnemyStats.main.UpdateHealth(PlayerStats.main.damagebullet);
+            collision.GetComponent<EnemyStats>().UpdateHealth(PlayerStats.main.damagebullet);
             Destroy(gameObject);
         }
     }

@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour
     
     AudioManager audioManager;
 
+    [Header("Attributes")]
     public float mana = 100;
     public float health = 100;
     private float bulletspeed = 8f;
@@ -46,15 +47,7 @@ public class PlayerStats : MonoBehaviour
         {
             health = PlayerPrefs.GetFloat("Health");
         }
-        
-        
     }
-
-    public void SaveUI()
-    {
-        
-    }
-
     private void Update()
     {
         
@@ -62,12 +55,13 @@ public class PlayerStats : MonoBehaviour
         {
             cooldownbullet += Time.deltaTime;
             cooldownattack += Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.J) && cooldownattack >= 0.9f)
+            if (Input.GetKeyDown(KeyCode.J) && cooldownattack >= 0.9f && PlayerMovement.main.IsGrounded())
             {
+                PlayerMovement.main.animator.SetTrigger("Attack");
                 cooldownattack = 0;
                 Attack();
             }
-            if (Input.GetKeyDown(KeyCode.K) && cooldownbullet >= 2f)
+            if (Input.GetKeyDown(KeyCode.K) && cooldownbullet >= 2f && PlayerMovement.main.IsGrounded())
             {
                 if (mana >= 15)
                 {

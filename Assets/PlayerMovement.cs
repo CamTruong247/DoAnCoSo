@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,25 +8,33 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private Animator runningspeed;
+    [SerializeField] public Animator animator;
 
     [Header("Attributes")]
     [SerializeField] public float speed = 12f;
     [SerializeField] private float jumpingPower = 10f;
 
+    public static PlayerMovement main;
     private float horizontal;
 
-    // Update is called once per frame
+
+    private void Awake()
+    {
+        main = this; 
+    }
+
     void Update()
     {
         if(Time.timeScale == 1)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
-            runningspeed.SetFloat("Speed", MathF.Abs(horizontal));
+            
             if (Input.GetKeyDown(KeyCode.W) && IsGrounded())
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+                animator.SetBool("Jumping", true);
             }
+
             if (horizontal != 0)
             {
                 if (horizontal > 0)
@@ -36,16 +45,23 @@ public class PlayerMovement : MonoBehaviour
                 {
                     transform.rotation = Quaternion.Euler(0, 180, 0);
                 }
-
             }
         }
     }
+
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        animator.SetFloat("Speed", MathF.Abs(horizontal));
+        animator.SetFloat("Height", rb.velocity.y);
     }
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        animator.SetBool("Jumping", false);
     }
 }

@@ -7,7 +7,9 @@ public class UIHome : MonoBehaviour
     {
         if(play == "Map0")
         {
-            PlayerPrefs.DeleteAll();
+            PlayerPrefs.DeleteKey("Map");
+            PlayerPrefs.DeleteKey("Mana");
+            PlayerPrefs.DeleteKey("Health");
         }
         Time.timeScale = 1;
         SceneManager.LoadSceneAsync(play);
