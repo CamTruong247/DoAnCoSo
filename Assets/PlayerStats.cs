@@ -57,7 +57,7 @@ public class PlayerStats : MonoBehaviour
             cooldownattack += Time.deltaTime;
             if (Input.GetKeyDown(KeyCode.J) && cooldownattack >= 0.9f && PlayerMovement.main.IsGrounded())
             {
-                PlayerMovement.main.animator.SetTrigger("Attack");
+                PlayerMovement.main.animator.SetTrigger("Attack");                
                 cooldownattack = 0;
                 Attack();
             }
@@ -65,6 +65,8 @@ public class PlayerStats : MonoBehaviour
             {
                 if (mana >= 15)
                 {
+                    audioManager.PlaySFX(audioManager.skill);
+                    PlayerMovement.main.animator.SetTrigger("Skill");
                     cooldownbullet = 0;
                     var bullet = Instantiate(bulletprefab, shootingPoint.position, bulletprefab.transform.rotation);
                     bullet.GetComponent<Rigidbody2D>().velocity = shootingPoint.right * bulletspeed;
@@ -93,9 +95,11 @@ public class PlayerStats : MonoBehaviour
     }
     private void Attack()
     {
+        audioManager.PlaySFX(audioManager.attack);
         RaycastHit2D[] hits = Physics2D.CircleCastAll(attackpoint.transform.position, radius, attackpoint.transform.position,0f,layer);
         foreach(RaycastHit2D hit in hits)
         {
+            audioManager.PlaySFX(audioManager.attackenemy);
             hit.transform.GetComponent<EnemyStats>().UpdateHealth(damageattack);
         }
     }
@@ -106,8 +110,8 @@ public class PlayerStats : MonoBehaviour
     //}
     public void UpdateHealth(float health)
     {
-        this.health -= health;
         audioManager.PlaySFX(audioManager.damagehealth);
+        this.health -= health;        
         if (this.health <= 0)
         {
             Destroy(gameObject);

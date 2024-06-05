@@ -8,12 +8,17 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
+    [SerializeField] AudioSource walkSource;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private AudioMixer audioMixer;
 
     public AudioClip musichome;
     public AudioClip damagehealth;
+    public AudioClip attack;
+    public AudioClip attackenemy;
+    public AudioClip skill;
+    public AudioClip walk;
 
     private void Start()
     {
@@ -51,10 +56,30 @@ public class AudioManager : MonoBehaviour
         sfxSlider.value = PlayerPrefs.GetFloat("SFX");
     }
 
-
     public void PlaySFX(AudioClip clip)
     {
         SFXSource.PlayOneShot(clip);
+    }
+
+    public void StopSFX(AudioClip clip)
+    {
+        SFXSource.Stop();
+    }
+    public void PlayWalkSFX()
+    {
+        if (!walkSource.isPlaying)
+        {
+            walkSource.clip = walk;
+            walkSource.Play();
+        }
+    }
+
+    public void StopWalkSFX()
+    {
+        if (walkSource.isPlaying)
+        {
+            walkSource.Stop();
+        }
     }
 
 }

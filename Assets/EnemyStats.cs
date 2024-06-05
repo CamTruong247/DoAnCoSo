@@ -15,7 +15,7 @@ public class EnemyStats : MonoBehaviour
 
     public static EnemyStats main;
     private float bulletspeed = 5f;
-    public float damagebullet = 10f;
+    public float damagebullet = 8f;
     public float damageattack = 5f;    
     private float cooldownbullet = 1.5f;
     private float cooldownattack = 1.5f;

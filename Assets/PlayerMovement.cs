@@ -10,17 +10,21 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] public Animator animator;
 
+    AudioManager audioManager;
+
     [Header("Attributes")]
     [SerializeField] public float speed = 12f;
     [SerializeField] private float jumpingPower = 10f;
 
     public static PlayerMovement main;
     private float horizontal;
+    private bool isWalking = false;
 
 
     private void Awake()
     {
-        main = this; 
+        main = this;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -34,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
                 animator.SetBool("Jumping", true);
             }
-
             if (horizontal != 0)
             {
                 if (horizontal > 0)
@@ -44,6 +47,22 @@ public class PlayerMovement : MonoBehaviour
                 else
                 {
                     transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
+            }
+            if (IsGrounded() && horizontal != 0)
+            {
+                if (!isWalking)
+                {
+                    audioManager.PlayWalkSFX();
+                    isWalking = true;
+                }
+            }
+            else
+            {
+                if (isWalking)
+                {
+                    audioManager.StopWalkSFX();
+                    isWalking = false;
                 }
             }
         }
