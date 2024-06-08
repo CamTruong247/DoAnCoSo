@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIPause : MonoBehaviour
 {
@@ -23,5 +24,11 @@ public class UIPause : MonoBehaviour
             Time.timeScale = 0;
             check = true;
         }
+    }
+
+    public void PlayAgain()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }

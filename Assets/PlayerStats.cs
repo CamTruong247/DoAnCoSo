@@ -14,7 +14,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private GameObject attackpoint;
     [SerializeField] private GameObject pauseblack;
     [SerializeField] private GameObject pausegame;
-    
+    [SerializeField] private GameObject gameover;
+
     AudioManager audioManager;
 
     [Header("Attributes")]
@@ -117,7 +118,7 @@ public class PlayerStats : MonoBehaviour
             Destroy(gameObject);
             UIPause.main.PauseGame();
             pauseblack.SetActive(true);
-            pausegame.SetActive(true);
+            gameover.SetActive(true);
         }
     }
 }
