@@ -29,6 +29,7 @@ public class PlayerStats : MonoBehaviour
     private float cooldownattack;
     public float radius;
     public LayerMask layer;
+    public LayerMask layer2;
 
     private void Awake()
     {
@@ -103,6 +104,12 @@ public class PlayerStats : MonoBehaviour
             audioManager.PlaySFX(audioManager.attackenemy);
             hit.transform.GetComponent<EnemyStats>().UpdateHealth(damageattack);
         }
+        RaycastHit2D[] hit2s = Physics2D.CircleCastAll(attackpoint.transform.position, radius, attackpoint.transform.position, 0f, layer2);
+        foreach (RaycastHit2D hit in hit2s)
+        {
+            audioManager.PlaySFX(audioManager.attackbarrier);
+            hit.transform.GetComponent<Barrier>().UpdateHealth(damageattack);
+        }
     }
     //private void OnDrawGizmosSelected()
     //{
@@ -111,7 +118,7 @@ public class PlayerStats : MonoBehaviour
     //}
     public void UpdateHealth(float health)
     {
-        audioManager.PlaySFX(audioManager.damagehealth);
+        audioManager.PlayHitDamageSFX(audioManager.damagehealth);
         this.health -= health;        
         if (this.health <= 0)
         {

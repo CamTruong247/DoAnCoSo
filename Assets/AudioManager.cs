@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
     [SerializeField] AudioSource walkSource;
+    [SerializeField] AudioSource hitdamageSource;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private AudioMixer audioMixer;
@@ -17,6 +18,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip damagehealth;
     public AudioClip attack;
     public AudioClip attackenemy;
+    public AudioClip attackbarrier;
     public AudioClip skill;
     public AudioClip walk;
 
@@ -82,4 +84,8 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayHitDamageSFX(AudioClip clip)
+    {
+        hitdamageSource.PlayOneShot(clip);
+    }
 }
