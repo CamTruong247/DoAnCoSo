@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private GameObject pauseblack;
     [SerializeField] private GameObject pausegame;
     [SerializeField] private GameObject gameover;
+    [SerializeField] private TextMeshProUGUI txtusehealth;
 
     AudioManager audioManager;
 
@@ -40,8 +42,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
-
-        if(PlayerPrefs.HasKey("Mana"))
+        if (PlayerPrefs.HasKey("Mana"))
         {
             mana = PlayerPrefs.GetFloat("Mana");
         }
@@ -127,5 +128,10 @@ public class PlayerStats : MonoBehaviour
             pauseblack.SetActive(true);
             gameover.SetActive(true);
         }
+    }
+
+    private void UseHealth()
+    {
+        
     }
 }
