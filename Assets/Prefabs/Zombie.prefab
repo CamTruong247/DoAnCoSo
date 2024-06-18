@@ -202,6 +202,9 @@ MonoBehaviour:
   enemytype: 0
   attackpoint: {fileID: 176006913581975580}
   movespeed: 0
+  bottle:
+  - {fileID: 4258624307724138265, guid: 8e10be9bded01854890308f1888ae7ae, type: 3}
+  - {fileID: 2253541301757213152, guid: 31e4cddcd02287b478c90aab149c2260, type: 3}
   damagebullet: 10
   damageattack: 5
   radius: 0.7

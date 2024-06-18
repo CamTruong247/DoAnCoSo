@@ -16,7 +16,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private GameObject pauseblack;
     [SerializeField] private GameObject pausegame;
     [SerializeField] private GameObject gameover;
-    [SerializeField] private TextMeshProUGUI txtusehealth;
+    [SerializeField] public TextMeshProUGUI txtusehealth;
+    [SerializeField] public TextMeshProUGUI txtusemana;
 
     AudioManager audioManager;
 
@@ -32,6 +33,8 @@ public class PlayerStats : MonoBehaviour
     public float radius;
     public LayerMask layer;
     public LayerMask layer2;
+    private float usehealth;
+    private float usemana;
 
     private void Awake()
     {
@@ -50,6 +53,16 @@ public class PlayerStats : MonoBehaviour
         {
             health = PlayerPrefs.GetFloat("Health");
         }
+        if (PlayerPrefs.HasKey("UseHealth"))
+        {
+            txtusehealth.text = PlayerPrefs.GetString("UseHealth");
+        }
+        if (PlayerPrefs.HasKey("UseMana"))
+        {
+            txtusemana.text = PlayerPrefs.GetString("UseMana");
+        }
+        usehealth = float.Parse(txtusehealth.text);
+        usemana = float.Parse(txtusemana.text);
     }
     private void Update()
     {
@@ -89,7 +102,9 @@ public class PlayerStats : MonoBehaviour
                 healthbar.fillAmount = health / 100f;
                 healthbar1.fillAmount = health / 100f;
             }
-        }        
+            UseHealth();
+            UseMana();
+        }
     }
     private void Manabar()
     {
@@ -103,7 +118,16 @@ public class PlayerStats : MonoBehaviour
         foreach(RaycastHit2D hit in hits)
         {
             audioManager.PlaySFX(audioManager.attackenemy);
-            hit.transform.GetComponent<EnemyStats>().UpdateHealth(damageattack);
+            EnemyStats enemyStats = hit.transform.GetComponent<EnemyStats>();
+            if (enemyStats != null)
+            {
+                enemyStats.UpdateHealth(damageattack);
+            }
+            NewEnemyStatus newEnemyStatus = hit.transform.GetComponent<NewEnemyStatus>();
+            if (newEnemyStatus != null)
+            {
+                newEnemyStatus.UpdateHealth(damageattack);
+            }
         }
         RaycastHit2D[] hit2s = Physics2D.CircleCastAll(attackpoint.transform.position, radius, attackpoint.transform.position, 0f, layer2);
         foreach (RaycastHit2D hit in hit2s)
@@ -132,6 +156,46 @@ public class PlayerStats : MonoBehaviour
 
     private void UseHealth()
     {
-        
+        float healing = 15;
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            if(usehealth > 0)
+            {
+                if(health < 100)
+                {
+                    health += healing;
+                    usehealth--;
+                    txtusehealth.text = usehealth.ToString();
+                }
+            }
+        }
+    }
+
+    public void UpdateUseHealth(float usehealth)
+    {
+        this.usehealth += usehealth;
+        txtusehealth.text = this.usehealth.ToString();
+    }
+
+    private void UseMana()
+    {
+        float manaing = 15;
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (usemana > 0)
+            {
+                if(mana < 100)
+                {
+                    mana += manaing;
+                    usemana--;
+                    txtusemana.text = usemana.ToString();
+                }
+            }
+        }
+    }
+    public void UpdateUseMana(float usemana)
+    {
+        this.usemana += usemana;
+        txtusemana.text = this.usemana.ToString();
     }
 }

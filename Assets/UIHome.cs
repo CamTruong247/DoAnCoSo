@@ -10,6 +10,8 @@ public class UIHome : MonoBehaviour
             PlayerPrefs.DeleteKey("Map");
             PlayerPrefs.DeleteKey("Mana");
             PlayerPrefs.DeleteKey("Health");
+            PlayerPrefs.SetString("UseHealth", "2");
+            PlayerPrefs.SetString("UseMana", "2");
         }
         Time.timeScale = 1;
         SceneManager.LoadSceneAsync(play);

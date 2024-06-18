@@ -27,6 +27,8 @@ public class SceneController : MonoBehaviour
         transitions.SetTrigger("End");
         PlayerPrefs.SetFloat("Mana", PlayerStats.main.mana);
         PlayerPrefs.SetFloat("Health", PlayerStats.main.health);
+        PlayerPrefs.SetString("UseHealth", PlayerStats.main.txtusehealth.text);
+        PlayerPrefs.SetString("UseMana", PlayerStats.main.txtusemana.text);
         PlayerPrefs.SetFloat("Map",SceneManager.GetActiveScene().buildIndex + 1);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         transitions.SetTrigger("Start");

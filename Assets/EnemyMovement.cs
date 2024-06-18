@@ -28,7 +28,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void EnemyMove()
     {
-        if (gameObject != null)
+        if (enemy != null)
         {
             if (Vector2.Distance(enemy.transform.position, movepoint[movepointindex].position) < 0.2f)
             {

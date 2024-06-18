@@ -16,22 +16,21 @@ public class NewEnemyStatus : MonoBehaviour
     public float speed;
     public float huong = 1;
     public LayerMask layer;
-    private float cooldownattack = 1.5f;
-    public float damageattack = 2f;
+    private float cooldownattack = 0.8f;
+    public float damageattack;
+    public float health;
 
     void Update()
     {
-        cooldownattack -= Time.deltaTime;
         RaycastHit2D[] hits = Physics2D.CircleCastAll(range.transform.position, radius, range.transform.position, 0f, layer);
         if(hits.Length > 0)
         {
-            Debug.Log(hits);
-            if (player.transform.position.x - 1 > gameObject.transform.position.x)
+            if (player.transform.position.x - 1.5 > gameObject.transform.position.x)
             {
                 transform.rotation = Quaternion.Euler(0, 180, 0);
                 rb.velocity = new Vector2(1 * speed, rb.velocity.y);
             }
-            else if (player.transform.position.x + 1 < gameObject.transform.position.x)
+            else if (player.transform.position.x + 1.5 < gameObject.transform.position.x)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 rb.velocity = new Vector2(-1 * speed, rb.velocity.y);
@@ -53,15 +52,20 @@ public class NewEnemyStatus : MonoBehaviour
             rb.velocity = new Vector2(huong * speed, rb.velocity.y);
         }
     }
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Handles.color = Color.red;
-    //    Handles.DrawWireDisc(range.transform.position, range.transform.forward, radius);
-    //}
+   
     private void OnDrawGizmosSelected()
     {
         Handles.color = Color.red;
         Handles.DrawWireDisc(attackpoint.transform.position, attackpoint.transform.forward, radiusattack);
+    }
+
+    public void UpdateHealth(float health)
+    {
+        this.health -= health;
+        if (this.health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Attack()
@@ -69,6 +73,7 @@ public class NewEnemyStatus : MonoBehaviour
         RaycastHit2D[] hits2 = Physics2D.CircleCastAll(attackpoint.transform.position, radiusattack, attackpoint.transform.position, 0f, layer);
         if (hits2.Length > 0)
         {
+            cooldownattack -= Time.deltaTime;
             if (cooldownattack <= 0)
             {
                 cooldownattack = 1.5f;

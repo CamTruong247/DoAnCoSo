@@ -1,3 +1,4 @@
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class BulletPlayer : MonoBehaviour
@@ -6,7 +7,16 @@ public class BulletPlayer : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            collision.GetComponent<EnemyStats>().UpdateHealth(PlayerStats.main.damagebullet);
+            EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
+            if(enemyStats != null)
+            {
+                enemyStats.UpdateHealth(PlayerStats.main.damagebullet);
+            }
+            NewEnemyStatus newEnemyStatus = collision.GetComponent<NewEnemyStatus>();
+            if(newEnemyStatus != null)
+            {
+                newEnemyStatus.UpdateHealth(PlayerStats.main.damagebullet);
+            }
             Destroy(gameObject);
         }
     }

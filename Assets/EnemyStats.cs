@@ -12,6 +12,7 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] private EnemyType enemytype;
     [SerializeField] private GameObject attackpoint;
     [SerializeField] public float movespeed;
+    [SerializeField] private GameObject[] bottle;
 
     public static EnemyStats main;
     private float bulletspeed = 5f;
@@ -21,6 +22,7 @@ public class EnemyStats : MonoBehaviour
     private float cooldownattack = 1.5f;
     public float radius;
     public LayerMask layer;
+    private GameObject drop;
 
     private void Awake()
     {
@@ -100,12 +102,14 @@ public class EnemyStats : MonoBehaviour
         this.health -= health;
         if(this.health<= 0)
         {
+            int random = Random.Range(0, 2);
+            Debug.Log(random);
+            drop = Instantiate(bottle[random], gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
     private void FixedUpdate()
     {
         gameObject.GetComponent<Rigidbody2D>().velocity = gameObject.transform.right * movespeed;
-
     }
 }
