@@ -19,6 +19,7 @@ public class BulletPlayer : MonoBehaviour
             }
             Destroy(gameObject);
         }
+
     }
     private void Start()
     {

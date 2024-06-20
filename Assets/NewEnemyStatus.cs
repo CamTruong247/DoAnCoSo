@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class NewEnemyStatus : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject range;
     [SerializeField] private GameObject attackpoint;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject point;
+    [SerializeField] private Animator animator;
 
+    private GameObject enemy;
     public float radius;
     public float radiusattack;
     public float speed;
@@ -19,6 +22,7 @@ public class NewEnemyStatus : MonoBehaviour
     private float cooldownattack = 0.8f;
     public float damageattack;
     public float health;
+
 
     void Update()
     {
@@ -52,12 +56,12 @@ public class NewEnemyStatus : MonoBehaviour
             rb.velocity = new Vector2(huong * speed, rb.velocity.y);
         }
     }
-   
-    private void OnDrawGizmosSelected()
-    {
-        Handles.color = Color.red;
-        Handles.DrawWireDisc(attackpoint.transform.position, attackpoint.transform.forward, radiusattack);
-    }
+
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Handles.color = Color.red;
+    //    Handles.DrawWireDisc(attackpoint.transform.position, attackpoint.transform.forward, radiusattack);
+    //}
 
     public void UpdateHealth(float health)
     {
@@ -79,6 +83,7 @@ public class NewEnemyStatus : MonoBehaviour
                 cooldownattack = 1.5f;
                 foreach (RaycastHit2D hit2 in hits2)
                 {
+                    animator.SetTrigger("Attack");
                     hit2.transform.GetComponent<PlayerStats>().UpdateHealth(damageattack);
                 }
             }

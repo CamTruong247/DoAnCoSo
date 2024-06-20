@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 176006913581975580}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0.035, z: 0}
+  m_LocalPosition: {x: 0.268, y: 0.035, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 4941546857347739885}
   - component: {fileID: -1060865406432022429}
   - component: {fileID: -7263802709341934663}
+  - component: {fileID: -6009153282374787293}
   m_Layer: 7
   m_Name: Zombie
   m_TagString: Enemy
@@ -121,16 +122,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8876638197507429900}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 1.204, y: 0.33, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4527147964678441401}
   - {fileID: 1457912404323413743}
   - {fileID: 7996943050231878292}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!212 &862996745763890674
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -172,12 +173,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 7b41d12d93def1643b9f0d4a12a75fe8, type: 3}
+  m_Sprite: {fileID: 1192516951, guid: 7c76b4bcd26796d4ba8eae319fd206ea, type: 3}
   m_Color: {r: 1, g: 0.9764151, b: 0.9764151, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -205,9 +206,10 @@ MonoBehaviour:
   bottle:
   - {fileID: 4258624307724138265, guid: 8e10be9bded01854890308f1888ae7ae, type: 3}
   - {fileID: 2253541301757213152, guid: 31e4cddcd02287b478c90aab149c2260, type: 3}
+  animator: {fileID: -6009153282374787293}
   damagebullet: 10
   damageattack: 5
-  radius: 0.7
+  radius: 0.5
   layer:
     serializedVersion: 2
     m_Bits: 256
@@ -270,16 +272,37 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07677825, y: 0.031990945}
+  m_Offset: {x: 0.0014739856, y: 0.050817013}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.41989788, y: 0.4796142}
+  m_Size: {x: 0.40734702, y: 1.4836721}
   m_EdgeRadius: 0
+--- !u!95 &-6009153282374787293
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8876638197507429900}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8eb9c1f16a49bcd40b23a82a829c8549, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

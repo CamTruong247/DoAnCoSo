@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] public Animator animator;
 
-    AudioManager audioManager;
+    public AudioManager audioManager;
 
     [Header("Attributes")]
     [SerializeField] public float speed = 12f;

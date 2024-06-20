@@ -14,6 +14,7 @@ public class UIPause : MonoBehaviour
 
     public void PauseGame()
     {
+        PlayerMovement.main.audioManager.StopWalkSFX();
         if (check)
         {
             Time.timeScale = 1;

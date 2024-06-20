@@ -13,6 +13,7 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] private GameObject attackpoint;
     [SerializeField] public float movespeed;
     [SerializeField] private GameObject[] bottle;
+    [SerializeField] public Animator animator;
 
     public static EnemyStats main;
     private float bulletspeed = 5f;
@@ -74,7 +75,8 @@ public class EnemyStats : MonoBehaviour
                     cooldownattack = 1.5f;
                     foreach (RaycastHit2D hit2 in hits2)
                     {
-                        hit2.transform.GetComponent<PlayerStats>().UpdateHealth(damageattack);
+                        animator.SetTrigger("Attack");
+                        hit2.transform.GetComponent<PlayerStats>().UpdateHealth(damageattack);                        
                     }
                 }
             }
@@ -103,7 +105,6 @@ public class EnemyStats : MonoBehaviour
         if(this.health<= 0)
         {
             int random = Random.Range(0, 2);
-            Debug.Log(random);
             drop = Instantiate(bottle[random], gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

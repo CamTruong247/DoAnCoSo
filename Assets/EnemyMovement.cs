@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (enemy != null)
         {
-            if (Vector2.Distance(enemy.transform.position, movepoint[movepointindex].position) < 0.2f)
+            if (Vector2.Distance(enemy.transform.position, movepoint[movepointindex].position) < 0.3f)
             {
                 enemy.transform.Rotate(0, 180, 0);
                 if (movepointindex < movepoint.Length - 1)
