@@ -30,6 +30,8 @@ public class UIPause : MonoBehaviour
     public void PlayAgain()
     {
         Time.timeScale = 1;
+        PlayerPrefs.DeleteKey("Health");
+        PlayerPrefs.DeleteKey("Mana");
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }

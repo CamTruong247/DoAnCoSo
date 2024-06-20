@@ -161,7 +161,7 @@ public class PlayerStats : MonoBehaviour
         {
             if(usehealth > 0)
             {
-                if(health < 100)
+                if(health <= 85)
                 {
                     health += healing;
                     usehealth--;
@@ -184,7 +184,7 @@ public class PlayerStats : MonoBehaviour
         {
             if (usemana > 0)
             {
-                if(mana < 100)
+                if(mana < 85)
                 {
                     mana += manaing;
                     usemana--;
