@@ -221,6 +221,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   animator: {fileID: 6816739298068132467}
+  audioManager: {fileID: 0}
   speed: 6
   jumpingPower: 12
 --- !u!114 &7502434722867625027
@@ -249,8 +250,8 @@ MonoBehaviour:
   txtusemana: {fileID: 0}
   mana: 100
   health: 100
-  damagebullet: 4
-  damageattack: 2
+  damagebullet: 6
+  damageattack: 4
   radius: 0.7
   layer:
     serializedVersion: 2

@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] public float movespeed;
     [SerializeField] private GameObject[] bottle;
     [SerializeField] public Animator animator;
+    [SerializeField] public Image healthbar;
 
     public static EnemyStats main;
     private float bulletspeed = 5f;
@@ -39,6 +41,7 @@ public class EnemyStats : MonoBehaviour
     private void Update()
     {
         RangeView();
+        healthbar.fillAmount = health / 20f;
     }
 
     private void RangeView()

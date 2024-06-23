@@ -18,6 +18,6 @@ public class BulletEnemy : MonoBehaviour
             PlayerStats.main.healthbar1.fillAmount = PlayerStats.main.health / 100;
             Destroy(gameObject);
         }
-
+    
     }
 }

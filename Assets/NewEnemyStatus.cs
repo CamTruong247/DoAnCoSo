@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NewEnemyStatus : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class NewEnemyStatus : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject point;
     [SerializeField] private Animator animator;
+    [SerializeField] public Image healthbar;
 
     private GameObject enemy;
     public float radius;
@@ -55,6 +57,7 @@ public class NewEnemyStatus : MonoBehaviour
             }
             rb.velocity = new Vector2(huong * speed, rb.velocity.y);
         }
+        healthbar.fillAmount = health / 100f;
     }
 
     //private void OnDrawGizmosSelected()
