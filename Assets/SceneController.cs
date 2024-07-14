@@ -29,6 +29,9 @@ public class SceneController : MonoBehaviour
         PlayerPrefs.SetFloat("Health", PlayerStats.main.health);
         PlayerPrefs.SetString("UseHealth", PlayerStats.main.txtusehealth.text);
         PlayerPrefs.SetString("UseMana", PlayerStats.main.txtusemana.text);
+        PlayerPrefs.SetString("Money", MoneyUI.main.txtmoney.text);
+        PlayerPrefs.SetFloat("Attack", PlayerStats.main.damageattack);
+        PlayerPrefs.SetFloat("Skill", PlayerStats.main.damagebullet);
         PlayerPrefs.SetFloat("Map",SceneManager.GetActiveScene().buildIndex + 1);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         transitions.SetTrigger("Start");

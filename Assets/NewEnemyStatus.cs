@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -24,8 +25,7 @@ public class NewEnemyStatus : MonoBehaviour
     private float cooldownattack = 0.8f;
     public float damageattack;
     public float health;
-
-
+    private float animationwalk = 0;
     void Update()
     {
         RaycastHit2D[] hits = Physics2D.CircleCastAll(range.transform.position, radius, range.transform.position, 0f, layer);
@@ -35,13 +35,16 @@ public class NewEnemyStatus : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, 180, 0);
                 rb.velocity = new Vector2(1 * speed, rb.velocity.y);
+                animationwalk = 1;
             }
             else if (player.transform.position.x + 1.5 < gameObject.transform.position.x)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 rb.velocity = new Vector2(-1 * speed, rb.velocity.y);
+                animationwalk = 1;
             }
             Attack();
+            animator.SetFloat("Speed", MathF.Abs(animationwalk));
         }
         else
         {
@@ -80,6 +83,7 @@ public class NewEnemyStatus : MonoBehaviour
         RaycastHit2D[] hits2 = Physics2D.CircleCastAll(attackpoint.transform.position, radiusattack, attackpoint.transform.position, 0f, layer);
         if (hits2.Length > 0)
         {
+            animationwalk = 0;
             cooldownattack -= Time.deltaTime;
             if (cooldownattack <= 0)
             {

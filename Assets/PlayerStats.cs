@@ -25,8 +25,8 @@ public class PlayerStats : MonoBehaviour
     public float mana = 100;
     public float health = 100;
     private float bulletspeed = 8f;
-    public float damagebullet = 4f;
-    public float damageattack = 2f;
+    public float damagebullet;
+    public float damageattack;
     public static PlayerStats main;
     private float cooldownbullet;
     private float cooldownattack;
@@ -60,6 +60,14 @@ public class PlayerStats : MonoBehaviour
         if (PlayerPrefs.HasKey("UseMana"))
         {
             txtusemana.text = PlayerPrefs.GetString("UseMana");
+        }
+        if (PlayerPrefs.HasKey("Attack"))
+        {
+            damageattack = PlayerPrefs.GetFloat("Attack");
+        }
+        if (PlayerPrefs.HasKey("Skill"))
+        {
+            damagebullet = PlayerPrefs.GetFloat("Skill");
         }
         usehealth = float.Parse(txtusehealth.text);
         usemana = float.Parse(txtusemana.text);
@@ -197,5 +205,14 @@ public class PlayerStats : MonoBehaviour
     {
         this.usemana += usemana;
         txtusemana.text = this.usemana.ToString();
+    }
+
+    public void UpdateAttack(float damageattack)
+    {
+        this.damageattack += damageattack;
+    }
+    public void UpdateSkill(float damagebullet)
+    {
+        this.damagebullet += damagebullet;
     }
 }

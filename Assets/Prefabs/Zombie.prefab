@@ -528,7 +528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 4527147964678441401}
   bulletbotprefab: {fileID: 8446431183233678151, guid: 8d2369c674bd89043aadab27d4ea45f2, type: 3}
-  health: 20
+  health: 15
   rangeview: {fileID: 550617870519229667}
   enemytype: 0
   attackpoint: {fileID: 176006913581975580}
@@ -626,7 +626,7 @@ Animator:
   m_GameObject: {fileID: 8876638197507429900}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8eb9c1f16a49bcd40b23a82a829c8549, type: 2}
+  m_Controller: {fileID: 9100000, guid: ebb22ceecfbcee5498c08f071d8dc52b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

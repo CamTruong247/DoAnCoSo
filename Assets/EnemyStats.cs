@@ -41,7 +41,7 @@ public class EnemyStats : MonoBehaviour
     private void Update()
     {
         RangeView();
-        healthbar.fillAmount = health / 20f;
+        healthbar.fillAmount = health / 15f;
     }
 
     private void RangeView()
@@ -109,6 +109,8 @@ public class EnemyStats : MonoBehaviour
         {
             int random = Random.Range(0, 2);
             drop = Instantiate(bottle[random], gameObject.transform.position, Quaternion.identity);
+            int rdmoney = Random.Range(4, 10);
+            MoneyUI.main.UpdateMoney(rdmoney);
             Destroy(gameObject);
         }
     }

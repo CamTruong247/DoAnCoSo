@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
         if(Time.timeScale == 1)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
-            
             if (Input.GetKeyDown(KeyCode.W) && IsGrounded())
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
