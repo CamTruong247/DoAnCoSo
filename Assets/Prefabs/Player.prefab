@@ -250,8 +250,8 @@ MonoBehaviour:
   txtusemana: {fileID: 0}
   mana: 100
   health: 100
-  damagebullet: 3
-  damageattack: 2
+  damagebullet: 4
+  damageattack: 3
   radius: 0.7
   layer:
     serializedVersion: 2

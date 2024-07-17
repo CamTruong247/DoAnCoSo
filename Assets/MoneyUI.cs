@@ -27,6 +27,7 @@ public class MoneyUI : MonoBehaviour
     private void Update()
     {
         txtmoney.text = money.ToString();
+        PlayerPrefs.SetString("Money",txtmoney.text);
     }
 
     public void MoneyBuy(float money)

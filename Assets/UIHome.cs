@@ -13,8 +13,8 @@ public class UIHome : MonoBehaviour
             PlayerPrefs.SetString("UseHealth", "2");
             PlayerPrefs.SetString("UseMana", "2");
             PlayerPrefs.SetString("Money", "10");
-            PlayerPrefs.SetFloat("Attack", 2);
-            PlayerPrefs.SetFloat("Skill", 3);
+            PlayerPrefs.SetFloat("Attack", 3);
+            PlayerPrefs.SetFloat("Skill", 4);
         }
         Time.timeScale = 1;
         SceneManager.LoadSceneAsync(play);

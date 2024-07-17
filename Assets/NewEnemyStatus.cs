@@ -28,39 +28,42 @@ public class NewEnemyStatus : MonoBehaviour
     private float animationwalk = 0;
     void Update()
     {
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(range.transform.position, radius, range.transform.position, 0f, layer);
-        if(hits.Length > 0)
+        if(player!= null)
         {
-            if (player.transform.position.x - 1.5 > gameObject.transform.position.x)
+            RaycastHit2D[] hits = Physics2D.CircleCastAll(range.transform.position, radius, range.transform.position, 0f, layer);
+            if (hits.Length > 0)
             {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-                rb.velocity = new Vector2(1 * speed, rb.velocity.y);
-                animationwalk = 1;
+                if (player.transform.position.x - 1.5 > gameObject.transform.position.x)
+                {
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                    rb.velocity = new Vector2(1 * speed, rb.velocity.y);
+                    animationwalk = 1;
+                }
+                else if (player.transform.position.x + 1.5 < gameObject.transform.position.x)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                    rb.velocity = new Vector2(-1 * speed, rb.velocity.y);
+                    animationwalk = 1;
+                }
+                Attack();
+                animator.SetFloat("Speed", MathF.Abs(animationwalk));
             }
-            else if (player.transform.position.x + 1.5 < gameObject.transform.position.x)
+            else
             {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                rb.velocity = new Vector2(-1 * speed, rb.velocity.y);
-                animationwalk = 1;
+                if (gameObject.transform.position.x > point.transform.position.x + 2)
+                {
+                    huong = -1;
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
+                if (gameObject.transform.position.x < point.transform.position.x - 2)
+                {
+                    huong = 1;
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
+                rb.velocity = new Vector2(huong * speed, rb.velocity.y);
             }
-            Attack();
-            animator.SetFloat("Speed", MathF.Abs(animationwalk));
+            healthbar.fillAmount = health / 100f;
         }
-        else
-        {
-            if(gameObject.transform.position.x > point.transform.position.x + 2)
-            {
-                huong = -1;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-            if(gameObject.transform.position.x < point.transform.position.x - 2)
-            {
-                huong = 1;
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
-            rb.velocity = new Vector2(huong * speed, rb.velocity.y);
-        }
-        healthbar.fillAmount = health / 100f;
     }
 
     //private void OnDrawGizmosSelected()
